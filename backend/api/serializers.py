@@ -8,11 +8,12 @@ class CountrySerializer(serializers.ModelSerializer):
         fields=['id','name']
 
 class CategoryCountrySerializer(serializers.ModelSerializer):
-    country=serializers.StringRelatedField()
+    country=CountrySerializer(many=True)
     photo_url = serializers.SerializerMethodField()
     class Meta:
         model=Category
         fields=['id','country','name','photo_url']
+        depth = 1
 
     def get_photo_url(self, category):
         request = self.context.get('request')

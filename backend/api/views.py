@@ -18,3 +18,13 @@ def api_home(request):
     coupons_serial=CouponSerializer(coupons,many=True)
 
     return JsonResponse([countries_serial.data,categories_serial.data,brands_serial.data,coupons_serial.data],safe=False)
+
+
+def api_cats(request):
+    cats=Category.objects.all()
+    country=Country.objects.get(name="Egypt")
+    cats2=Category.objects.filter(country__name="Egypt")
+    categories_serial=CategoryCountrySerializer(cats2,many=True,context={"request":request})
+    print(categories_serial.data)
+    
+    return JsonResponse(categories_serial.data,safe=False)

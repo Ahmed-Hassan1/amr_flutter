@@ -8,13 +8,14 @@ class Country(models.Model):
         return self.name
 
 class Category(models.Model):
-    country=models.ForeignKey(Country,on_delete=models.CASCADE,blank=False)
+    #country=models.ForeignKey(Country,on_delete=models.CASCADE,blank=False)
+    country = models.ManyToManyField(Country)
     name = models.CharField(max_length=250)
     image = models.ImageField(null=True,blank=True)
 
     def __str__(self):
         return self.name
-     
+    
     @property
     def imageURL(self):
         try:
