@@ -5,6 +5,7 @@ from .models import *
 
 admin.site.register(Brand)
 admin.site.register(Coupon)
+admin.site.register(User_Number)
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
