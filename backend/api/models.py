@@ -36,13 +36,24 @@ class Category(models.Model):
 class Brand(models.Model):
     category=models.ForeignKey(Category,on_delete=models.CASCADE,blank=False)
     name = models.CharField(max_length=250)
+    image = models.ImageField(null=True,blank=True)
 
     def __str__(self):
         return self.name
     
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+    
 class Coupon(models.Model):
+    description = models.CharField(max_length=250)
     brand=models.ForeignKey(Brand,on_delete=models.CASCADE,blank=False)
-    name = models.CharField(max_length=250)
+    code = models.CharField(max_length=250)
+    
 
     def __str__(self):
-        return self.name
+        return self.description
