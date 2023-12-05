@@ -5,7 +5,7 @@ from rest_framework import serializers
 class CountrySerializer(serializers.ModelSerializer):
     class Meta:
         model=Country
-        fields=['id','name']
+        fields=['id','name','extension']
 
 class CategoryCountrySerializer(serializers.ModelSerializer):
     country=CountrySerializer(many=True)
