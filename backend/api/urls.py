@@ -6,5 +6,6 @@ urlpatterns=[
     path('cats',api_cats),
     path('brands',api_brands),
     path('coupons',api_coupons),
-    path('create_user',api_create_user)
+    path('create_user',api_create_user),
+    path('country',api_countries)
 ]

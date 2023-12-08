@@ -60,6 +60,12 @@ def api_coupons(request):
     coupons_serial=CouponSerializer(coupons,many=True,context={"request":request})
 
     return JsonResponse(coupons_serial.data,safe=False)
+
+def api_countries(request):
+    countries=Country.objects.all()
+    countries_serial=CountrySerializer(countries,many=True)
+
+    return JsonResponse(countries_serial.data,safe=False)
     
 
 @csrf_exempt
