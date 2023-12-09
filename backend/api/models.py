@@ -46,6 +46,7 @@ class Brand(models.Model):
     name = models.CharField(max_length=250)
     image = models.ImageField(null=True,blank=True)
     country = models.ManyToManyField(Country,blank=True,null=True)
+    topStore=models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -63,7 +64,7 @@ class Brand(models.Model):
     
 class Coupon(models.Model):
     description = models.CharField(max_length=250)
-    brand=models.ForeignKey(Brand,on_delete=models.CASCADE,blank=False)
+    brand=models.ForeignKey(Brand,on_delete=models.CASCADE,blank=False,related_name="coupons")
     code = models.CharField(max_length=250)
     
 

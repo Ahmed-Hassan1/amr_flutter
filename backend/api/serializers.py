@@ -23,14 +23,18 @@ class CategoryCountrySerializer(serializers.ModelSerializer):
 class BrandCountrySerializer(serializers.ModelSerializer):
     category=serializers.StringRelatedField()
     photo_url = serializers.SerializerMethodField()
+    num_coupons = serializers.SerializerMethodField()
     class Meta:
         model=Brand
-        fields=['id','category','name','photo_url']
+        fields=['id','category','name','photo_url','num_coupons','topStore']
 
     def get_photo_url(self, brand):
         request = self.context.get('request')
         photo_url = brand.image.url
         return request.build_absolute_uri(photo_url)
+    
+    def get_num_coupons(self,obj):
+        return obj.coupons.count()
     
 
 class CouponSerializer(serializers.ModelSerializer):

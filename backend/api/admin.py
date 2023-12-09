@@ -21,9 +21,11 @@ class CategoryAdmin(admin.ModelAdmin):
 class BrandAdmin(admin.ModelAdmin):
     autocomplete_fields=['country']
 
-    list_display=["name","category","countries"]
+    list_display=["name","category","countries","topStore"]
 
     list_filter=["category","country"]
+
+    list_editable=["topStore"]
 
 @admin.register(Country)
 class CountryAdmin(admin.ModelAdmin):
