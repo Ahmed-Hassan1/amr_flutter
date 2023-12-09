@@ -16,6 +16,9 @@ class User_Number(models.Model):
 
     def __str__(self):
         return self.number
+    
+    def extension(self):
+        return self.country.extension
 
 class Category(models.Model):
     #country=models.ForeignKey(Country,on_delete=models.CASCADE,blank=False)
@@ -34,6 +37,9 @@ class Category(models.Model):
             url = ''
         return url
     
+    def countries(self):
+        return ",".join([str(p) for p in self.country.all()])
+    
 
 class Brand(models.Model):
     category=models.ForeignKey(Category,on_delete=models.CASCADE,blank=False)
@@ -51,6 +57,9 @@ class Brand(models.Model):
         except:
             url = ''
         return url
+    
+    def countries(self):
+        return ",".join([str(p) for p in self.country.all()])
     
 class Coupon(models.Model):
     description = models.CharField(max_length=250)
